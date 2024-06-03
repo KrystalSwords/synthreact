@@ -1,9 +1,9 @@
 import "./styles.css";
 import { useEffect, useState } from "react";
 import KeyBed from "./components/KeyBed";
-import ASDROptions from "./components/ASDROptions";
 import { synth } from "./synth.js";
-import WaveSelector from "./components/WaveSelector";
+import SynthControls from "./components/SynthControls";
+import SynthDisplay from "./components/SynthDisplay";
 
 export default function App() {
   const notesarray = [
@@ -52,17 +52,14 @@ export default function App() {
 
   const handleWaveChange = (e) => {
     synth.oscillator.type = e;
-    console.log("1");
   };
 
   const noteplay = (note) => {
     synth.triggerAttack(note);
-    console.log("note play");
   };
 
   const notestop = () => {
     synth.triggerRelease();
-    console.log("note stop");
   };
 
   function octaveUp() {
@@ -74,21 +71,17 @@ export default function App() {
   }
 
   return (
-    <div>
-      <KeyBed
+    <div class="maindisplay">
+      <SynthDisplay
         notesarray={notesarray}
-        octave={currentOctave}
+        currentOctave={currentOctave}
         noteplay={noteplay}
         notestop={notestop}
+        handleWaveChange={handleWaveChange}
+        handleASDRChange={handleASDRChange}
+        octaveUp={octaveUp}
+        octaveDown={octaveDown}
       />
-      <div>
-        <button onClick={octaveUp}>Octave Up</button>
-        <button onClick={octaveDown}>Octave Down</button>
-      </div>
-      <div>
-        <ASDROptions handleASDRChange={handleASDRChange} />
-        <WaveSelector handleWaveChange={handleWaveChange} />
-      </div>
     </div>
   );
 }

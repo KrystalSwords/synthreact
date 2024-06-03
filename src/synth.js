@@ -7,10 +7,10 @@ export const synth = new MonoSynth({
     frequency: 150,
   },
   envelope: {
-    attack: 0,
-    decay: 0.0,
+    attack: 5,
+    decay: 0,
     sustain: 1,
-    release: 0.1,
+    release: 0,
     releaseCurve: "linear",
   },
 }).toDestination();

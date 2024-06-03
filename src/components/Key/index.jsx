@@ -1,6 +1,6 @@
 import "./styles.css";
 
-export default function Key({ note, noteplay, notestop, handleKeyPress }) {
+export default function Key({ note, noteplay, notestop }) {
   let keystyle;
   if (note.includes("b") || note.includes("#")) {
     keystyle = "keyaccid";

@@ -17,3 +17,11 @@
   text-align: center;
   width: 34px;
 }
+
+.maindisplay {
+  margin-top: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
