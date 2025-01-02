@@ -1,18 +1,14 @@
 import "./styles.css";
+import { useKeyPress } from "../../hooks/useKeyPress";
 
-export default function Key({ note, noteplay, notestop }) {
+export default function Key({ char }) {
+  const accidentals = "sdghj23567";
+  const { activeKeys } = useKeyPress();
   let keystyle;
-  if (note.includes("b") || note.includes("#")) {
-    keystyle = "keyaccid";
+  if (accidentals.includes(char)) {
+    keystyle = activeKeys.includes(char) ? "keyaccidpressed" : "keyaccid";
   } else {
-    keystyle = "keynat";
+    keystyle = activeKeys.includes(char) ? "keynatpressed" : "keynat";
   }
-  return (
-    <div
-      className={keystyle}
-      onMouseDown={() => noteplay(note)}
-      onMouseUp={notestop}
-      onMouseLeave={notestop}
-    ></div>
-  );
+  return <div className={keystyle} data-char={char}></div>;
 }

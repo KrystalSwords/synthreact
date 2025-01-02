@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { PolySynth, Synth } from "tone";
+import { MonoSynth, Synth } from "tone";
 
 //HOOK that reloads the synth when the options (type, asdr) change
 //adapted from: https://github.com/trvswgnr/tonejs-synth/tree/main
@@ -9,17 +9,15 @@ export const useSynth = (options) => {
     if (!options) {
       return;
     }
-    const synth = new PolySynth(Synth, {
-      oscillator: {
-        type: options.oscillator,
-      },
-    });
+    const synth = new MonoSynth(options).toDestination();
 
     setSynth(synth);
+    console.log(options);
+    console.log(synth);
 
     return () => {
       if (synth) {
-        synth.releaseAll();
+        synth.triggerRelease();
         setSynth(null);
       }
     };

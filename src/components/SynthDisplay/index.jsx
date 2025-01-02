@@ -3,10 +3,8 @@ import KeyBed from "../KeyBed";
 
 //COMPONENT that houses the synth and its controls
 export default function SynthDisplay({
-  notesarray,
+  keyboardarray,
   currentOctave,
-  noteplay,
-  notestop,
   handleWaveChange,
   handleASDRChange,
   octaveUp,
@@ -20,12 +18,7 @@ export default function SynthDisplay({
         octaveUp={octaveUp}
         octaveDown={octaveDown}
       />
-      <KeyBed
-        notesarray={notesarray}
-        octave={currentOctave}
-        noteplay={noteplay}
-        notestop={notestop}
-      />
+      <KeyBed keyboardarray={keyboardarray} octave={currentOctave} />
     </div>
   );
 }

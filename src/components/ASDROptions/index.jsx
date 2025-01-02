@@ -4,9 +4,9 @@ import "./styles.css";
 
 //COMPONENT that contains the options for synth envelope
 export default function ASDROptions({ handleASDRChange }) {
-  let [attackValue, setAttackValue] = useState(0),
+  let [attackValue, setAttackValue] = useState(1),
     [decayValue, setDecayValue] = useState(0),
-    [sustainValue, setSustainValue] = useState(0),
+    [sustainValue, setSustainValue] = useState(1),
     [releaseValue, setReleaseValue] = useState(0);
   return (
     <div className="controlset">

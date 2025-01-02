@@ -1,65 +1,46 @@
 import "./styles.css";
 import { useEffect, useState } from "react";
 import KeyBed from "./components/KeyBed";
-import { synth } from "./synth.js";
 import SynthControls from "./components/SynthControls";
 import SynthDisplay from "./components/SynthDisplay";
+import { useKeyPress } from "./hooks/useKeyPress";
+import SoundGen from "./components/SoundGen";
 
 export default function App() {
-  const notesarray = [
-    "C",
-    "C#",
-    "D",
-    "D#",
-    "E",
-    "F",
-    "F#",
-    "G",
-    "G#",
-    "A",
-    "A#",
-    "B",
-  ];
-  const keyboardarray = [
-    "a",
-    "w",
-    "s",
-    "e",
-    "d",
-    "f",
-    "t",
-    "g",
-    "y",
-    "h",
-    "u",
-    "j",
-  ];
+  const defaultOptions = {
+    volume: -8,
+    oscillator: {
+      type: "sine",
+      frequency: 150,
+    },
+    envelope: {
+      attack: 1,
+      decay: 0,
+      sustain: 1,
+      release: 0,
+      releaseCurve: "linear",
+    },
+  };
+  const keyboardarray = "zsxdcvgbhnjmq2w3er5t6y7u".split("");
   const [currentOctave, setCurrentOctave] = useState(4);
+  const [options, setOptions] = useState(defaultOptions);
 
-  const handleASDRChange = (e, asdrselect) => {
-    if (asdrselect === "attack") {
-      synth.envelope.attack = e;
-    } else if (asdrselect === "decay") {
-      synth.envelope.decay = e;
-    } else if (asdrselect === "sustain") {
-      synth.envelope.sustain = e;
-    } else if (asdrselect === "release") {
-      synth.envelope.release = e;
-    } else {
-      console.log("you goofed");
-    }
+  const handleASDRChange = (e, adsrselect) => {
+    //    const newOptions = // merge current options with envelope[adsrselect]
+    setOptions({
+      ...options,
+      envelope: { ...options.envelope, [adsrselect]: e },
+    });
+    console.log(options);
   };
 
   const handleWaveChange = (e) => {
-    synth.oscillator.type = e;
-  };
-
-  const noteplay = (note) => {
-    synth.triggerAttack(note);
-  };
-
-  const notestop = () => {
-    synth.triggerRelease();
+    //    const newOptions = // merge current options with envelope[adsrselect]
+    setOptions({
+      ...options,
+      oscillator: { ...options.oscillator, type: e },
+    });
+    console.log(options);
   };
 
   function octaveUp() {
@@ -72,11 +53,14 @@ export default function App() {
 
   return (
     <div class="maindisplay">
+      <SoundGen
+        options={options}
+        notesarray={keyboardarray}
+        octave={currentOctave}
+      />
       <SynthDisplay
-        notesarray={notesarray}
+        keyboardarray={keyboardarray}
         currentOctave={currentOctave}
-        noteplay={noteplay}
-        notestop={notestop}
         handleWaveChange={handleWaveChange}
         handleASDRChange={handleASDRChange}
         octaveUp={octaveUp}
