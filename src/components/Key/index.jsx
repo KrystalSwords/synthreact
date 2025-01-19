@@ -1,7 +1,7 @@
 import "./styles.css";
 import { useKeyPress } from "../../hooks/useKeyPress";
 
-export default function Key({ char }) {
+export default function Key({ char, showControls }) {
   const accidentals = "sdghj23567";
   const { activeKeys } = useKeyPress();
   let keystyle;
@@ -10,5 +10,9 @@ export default function Key({ char }) {
   } else {
     keystyle = activeKeys.includes(char) ? "keynatpressed" : "keynat";
   }
-  return <div className={keystyle} data-char={char}></div>;
+  return (
+    <div className={keystyle} data-char={char}>
+      {showControls && <span>{char}</span>}
+    </div>
+  );
 }

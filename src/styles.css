@@ -1,6 +1,15 @@
-.App {
+.background {
   font-family: sans-serif;
   text-align: center;
+  background-color: cyan;
+  min-height: 100vh;
+  min-width: 100vw;
+  position: absolute;
+  background-position: top left;
+  background-size: contain;
+  background-image: linear-gradient(var(--primary-color), black);
+  /*background-image: url("./public/pexels-photo-998641.jpeg");
+*/
 }
 
 .square {
@@ -16,12 +25,4 @@
   padding: 0;
   text-align: center;
   width: 34px;
-}
-
-.maindisplay {
-  margin-top: 150px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
 }

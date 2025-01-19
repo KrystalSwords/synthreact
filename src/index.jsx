@@ -13,5 +13,5 @@ root.render(
     <PrimeReactProvider>
       <App />
     </PrimeReactProvider>
-  </StrictMode>,
+  </StrictMode>
 );

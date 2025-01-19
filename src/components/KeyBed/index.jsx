@@ -1,25 +1,12 @@
 import Key from "../Key";
 
-export default function KeyBed({ keyboardarray, octave }) {
-  const notesarray = [
-    "C",
-    "C#",
-    "D",
-    "D#",
-    "E",
-    "F",
-    "F#",
-    "G",
-    "G#",
-    "A",
-    "A#",
-    "B",
-  ];
+export default function KeyBed({ keyboardarray, showControls }) {
+  console.log(showControls);
   return (
     <>
       <span className="octave1">
         {keyboardarray.map((char) => (
-          <Key char={char} />
+          <Key char={char} showControls={showControls} />
         ))}
       </span>
     </>

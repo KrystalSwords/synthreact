@@ -1,5 +1,6 @@
 import SynthControls from "../SynthControls";
 import KeyBed from "../KeyBed";
+import "./styles.css";
 
 //COMPONENT that houses the synth and its controls
 export default function SynthDisplay({
@@ -9,16 +10,24 @@ export default function SynthDisplay({
   handleASDRChange,
   octaveUp,
   octaveDown,
+  showControls,
+  setShowControls,
 }) {
   return (
-    <div>
+    <div className="synthdisplay">
       <SynthControls
         handleWaveChange={handleWaveChange}
         handleASDRChange={handleASDRChange}
         octaveUp={octaveUp}
         octaveDown={octaveDown}
+        showControls={showControls}
+        setShowControls={setShowControls}
       />
-      <KeyBed keyboardarray={keyboardarray} octave={currentOctave} />
+      <KeyBed
+        keyboardarray={keyboardarray}
+        octave={currentOctave}
+        showControls={showControls}
+      />
     </div>
   );
 }

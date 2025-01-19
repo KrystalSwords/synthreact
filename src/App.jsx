@@ -1,10 +1,6 @@
 import "./styles.css";
-import { useEffect, useState } from "react";
-import KeyBed from "./components/KeyBed";
-import SynthControls from "./components/SynthControls";
-import SynthDisplay from "./components/SynthDisplay";
-import { useKeyPress } from "./hooks/useKeyPress";
-import SoundGen from "./components/SoundGen";
+import { useState } from "react";
+import SynthContainer from "./components/SynthContainer";
 
 export default function App() {
   const defaultOptions = {
@@ -17,13 +13,14 @@ export default function App() {
       attack: 1,
       decay: 0,
       sustain: 1,
-      release: 0,
+      release: 0.4,
       releaseCurve: "linear",
     },
   };
   const keyboardarray = "zsxdcvgbhnjmq2w3er5t6y7u".split("");
   const [currentOctave, setCurrentOctave] = useState(4);
   const [options, setOptions] = useState(defaultOptions);
+  const [showControls, setShowControls] = useState(true);
 
   const handleASDRChange = (e, adsrselect) => {
     //    const newOptions = // merge current options with envelope[adsrselect]
@@ -52,19 +49,17 @@ export default function App() {
   }
 
   return (
-    <div class="maindisplay">
-      <SoundGen
+    <div className="background">
+      <SynthContainer
         options={options}
-        notesarray={keyboardarray}
-        octave={currentOctave}
-      />
-      <SynthDisplay
         keyboardarray={keyboardarray}
         currentOctave={currentOctave}
-        handleWaveChange={handleWaveChange}
         handleASDRChange={handleASDRChange}
+        handleWaveChange={handleWaveChange}
         octaveUp={octaveUp}
         octaveDown={octaveDown}
+        showControls={showControls}
+        setShowControls={setShowControls}
       />
     </div>
   );

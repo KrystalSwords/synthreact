@@ -7,7 +7,7 @@ export default function ASDROptions({ handleASDRChange }) {
   let [attackValue, setAttackValue] = useState(1),
     [decayValue, setDecayValue] = useState(0),
     [sustainValue, setSustainValue] = useState(1),
-    [releaseValue, setReleaseValue] = useState(0);
+    [releaseValue, setReleaseValue] = useState(0.4);
   return (
     <div className="controlset">
       <div className="control">
@@ -19,9 +19,10 @@ export default function ASDROptions({ handleASDRChange }) {
             handleASDRChange(e.value, "attack");
           }}
           min={0}
-          max={5}
+          max={3}
           step={0.1}
           size={70}
+          valueTemplate={""}
         />
       </div>
       <div className="control">
@@ -36,6 +37,7 @@ export default function ASDROptions({ handleASDRChange }) {
           max={10}
           step={1}
           size={70}
+          valueTemplate={""}
         />
       </div>
       <div className="control">
@@ -50,6 +52,7 @@ export default function ASDROptions({ handleASDRChange }) {
           max={1}
           step={0.1}
           size={70}
+          valueTemplate={""}
         />
       </div>
       <div className="control">
@@ -64,6 +67,7 @@ export default function ASDROptions({ handleASDRChange }) {
           max={5}
           step={0.1}
           size={70}
+          valueTemplate={""}
         />
       </div>
     </div>
